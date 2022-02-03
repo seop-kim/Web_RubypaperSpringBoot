@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Built-By: gimtaeseob
+Build-Jdk: 11.0.12
+Implementation-Title: Chapter01
+Implementation-Version: 0.0.1-SNAPSHOT
+Implementation-Vendor-Id: cpm.rubypaper
+Implementation-URL: https://spring.io/projects/spring-boot/Chapter01
+Created-By: Maven Integration for Eclipse
+
