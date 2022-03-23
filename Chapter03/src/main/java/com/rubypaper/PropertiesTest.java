@@ -1,6 +1,5 @@
 package com.rubypaper;
 
-import com.rubypaper.Chapter03.controller.BoardController;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,10 +8,7 @@ import org.springframework.core.env.Environment;
 import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = BoardController.class,
-        properties = {"author.name=Gurum",
-                "author.age=45",
-                "author.nation=Korea"})
+@SpringBootTest()
 public class PropertiesTest {
 
     @Autowired

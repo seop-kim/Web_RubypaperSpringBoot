@@ -1,13 +1,16 @@
 package com.rubypaper;
 
+import com.rubypaper.Chapter03.service.BoardService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
+import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
@@ -18,16 +21,24 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * AutoConfigureMockMvc 는 @Service @Repository 까지 모두 메모리에 올려 테스트를 한다.
  * 따라서 간단하게 컨트롤러만 구동하여 테스트를 진행하고자 한다면 @WebMvcTest 를 사용해야한다.
  * @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.MOCK) 는 AutoConfigureMockMvc 을 사용할 때
- * 설정에서 서블릿 컨테이너를 모킹할지에 대한 여부이다 MOCK 은 설정한다는 것이고 NONE 은 하지 않는 것이다.(?)
+ * 설정에서 서블릿 컨테이너를 모킹하여 사용할지에 대한 여부이다 MOCK 은 모킹하여 사용하는 것이고 외에는 실제 서블릿 컨테이너를 사용하는 것이다.(?)
+ * 자세한 내용은 책 137p 를 참고하도록 한다.
  */
-@RunWith(SpringRunner.class)
+
 //@WebMvcTest
+@RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.MOCK)
 @AutoConfigureMockMvc
 public class BoardControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
+
+//    @Autowired
+//    private TestRestTemplate restTemplate;
+
+    @MockBean
+    private BoardService boardService;
 
     @Test
     public void testHello() throws Exception {
@@ -45,6 +56,15 @@ public class BoardControllerTest {
          *
          * 마지막으로 요청과 응답 메시지를 확인해보고 싶다면 andDo() 메소드를 이용하면 된다.
          */
+        //mockMvc.perform(get("/hello").param("name", "둘리")).andExpect(status().isOk()).andExpect(content().string("Hello : 둘리")).andDo(print());
+
+
+        //BoardVO board = restTemplate.getForObject("/getBoard", BoardVO.class);
+        //assertEquals("테스터", board.getWriter());
+
+        when(boardService.hello("둘리")).thenReturn("Hello : 둘리");
+
         mockMvc.perform(get("/hello").param("name", "둘리")).andExpect(status().isOk()).andExpect(content().string("Hello : 둘리")).andDo(print());
+
     }
 }
