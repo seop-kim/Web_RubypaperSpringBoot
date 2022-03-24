@@ -1,69 +1,77 @@
 package com.rubypaper.domain;
 
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import java.util.Date;
 
 @Entity
 @Table(name = "BOARD")
 public class Board {
 
-    @Id
-    @GeneratedValue
-    private Long seq;
-    private String title;
-    private String writer;
-    private String content;
-    private Date createDate;
-    private long cnt;
+	@Id
+	@GeneratedValue
+	private Long seq;
+	private String title;
+	private String writer;
+	private String content;
+	private Date createDate;
+	private Long cnt;
 
-    public Long getSeq() {
-        return seq;
-    }
+	@Override
+	public String toString() {
+		return "Board [seq=" + seq + ", title=" + title + ", writer=" + writer + ", content=" + content
+				+ ", createDate=" + createDate + ", cnt=" + cnt + "]";
+	}
 
-    public void setSeq(Long seq) {
-        this.seq = seq;
-    }
+	public Long getSeq() {
+		return seq;
+	}
 
-    public String getTitle() {
-        return title;
-    }
+	public void setSeq(Long seq) {
+		this.seq = seq;
+	}
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
+	public String getTitle() {
+		return title;
+	}
 
-    public String getWriter() {
-        return writer;
-    }
+	public void setTitle(String title) {
+		this.title = title;
+	}
 
-    public void setWriter(String writer) {
-        this.writer = writer;
-    }
+	public String getWriter() {
+		return writer;
+	}
 
-    public String getContent() {
-        return content;
-    }
+	public void setWriter(String writer) {
+		this.writer = writer;
+	}
 
-    public void setContent(String content) {
-        this.content = content;
-    }
+	public String getContent() {
+		return content;
+	}
 
-    public Date getCreateDate() {
-        return createDate;
-    }
+	public void setContent(String content) {
+		this.content = content;
+	}
 
-    public void setCreateDate(Date createDate) {
-        this.createDate = createDate;
-    }
+	public Date getCreateDate() {
+		return createDate;
+	}
 
-    public long getCnt() {
-        return cnt;
-    }
+	public void setCreateDate(Date createDate) {
+		this.createDate = createDate;
+	}
 
-    public void setCnt(long cnt) {
-        this.cnt = cnt;
-    }
+	public Long getCnt() {
+		return cnt;
+	}
+
+	public void setCnt(Long cnt) {
+		this.cnt = cnt;
+	}
+
 }
