@@ -1,6 +1,7 @@
 package com.rubypaper;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -22,6 +23,56 @@ public class JPAClient {
 
 		// entity 종료
 		jc.entityKill();
+	}
+
+	public void delBoard() {
+		EntityTransaction tx = em.getTransaction();
+		tx.begin();
+
+		Board board = em.find(Board.class, 1L);
+		board.setSeq(1L);
+
+		board.setSeq(1L);
+		em.remove(board);
+
+		tx.commit();
+	}
+
+	public void boardList() {
+		EntityTransaction tx = em.getTransaction();
+
+		try {
+			tx.begin();
+
+			Board board = new Board();
+			String jpql = "SELECT B FROM Board B ORDER BY B.seq DESC";
+			List<Board> boardList = em.createQuery(jpql, Board.class).getResultList();
+
+			for (Board brd : boardList) {
+				System.out.println("---> " + brd.toString());
+			}
+
+			tx.commit();
+
+		} catch (Exception e) {
+			// TODO: handle exception
+			tx.rollback();
+		}
+	}
+
+	public void updateBoard() {
+		EntityTransaction tx = em.getTransaction();
+		try {
+			tx.begin();
+
+			Board board = em.find(Board.class, 1L);
+			board.setTitle("update title");
+
+			tx.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+			tx.rollback();
+		}
 	}
 
 	public void boardInsert() {
@@ -46,9 +97,9 @@ public class JPAClient {
 		}
 	}
 
-	public void boardList() {
+	public void getBoard() {
 		try {
-			Board searchBoard = em.find(Board.class, 1L);
+			Board searchBoard = em.find(Board.class, 2L);
 			System.out.println("---> " + searchBoard.toString());
 
 		} catch (Exception e) {
@@ -65,5 +116,16 @@ public class JPAClient {
 	public void entityKill() {
 		em.close();
 		emf.close();
+	}
+
+	public void sleep(int i) {
+
+		i = i * 1000;
+
+		try {
+			Thread.sleep(i);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 	}
 }
