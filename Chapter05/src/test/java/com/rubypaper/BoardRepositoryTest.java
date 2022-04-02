@@ -7,6 +7,10 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.rubypaper.domain.Board;
@@ -74,6 +78,37 @@ public class BoardRepositoryTest {
         List<Board> boardList = boardRepo.findByTitleContainingOrContentContaining("5", "16");
 
         System.out.println("=== Search Result ===");
+        for (Board board : boardList) {
+            System.out.println("---> " + board.toString());
+        }
+    }
+
+    @Test
+    public void 정렬검색() {
+        List<Board> boardList = boardRepo.findByTitleContainingOrderBySeqDesc("17");
+
+        System.out.println("=== Result ===");
+        for (Board board : boardList) {
+            System.out.println("---> " + board.toString());
+        }
+    }
+
+    @Test
+    public void 페이징정렬() {
+        // 첫번째 인자는 몇페이지부터 보여줄지, 두번째 인자는 페이지 당 몇개를 보여줄지 이다. 추가적인 인자는 정렬에 관련된 인자이다.
+        Pageable paging = PageRequest.of(0, 5, Sort.Direction.DESC, "seq");
+
+        // Page 는 페이징 사용시 추가적인 기능을 제공 해준다.
+        Page<Board> pageInfo = boardRepo.findByTitleContaining("Title", paging);
+
+        System.out.println("PAGE SIZE : " + pageInfo.getSize());
+        System.out.println("TOTAL PAGES : " + pageInfo.getTotalPages());
+        System.out.println("TOTAL COUNT : " + pageInfo.getTotalElements());
+        System.out.println("NEXT : " + pageInfo.nextPageable());
+
+        List<Board> boardList = pageInfo.getContent();
+
+        System.out.println("=== Result ===");
         for (Board board : boardList) {
             System.out.println("---> " + board.toString());
         }
