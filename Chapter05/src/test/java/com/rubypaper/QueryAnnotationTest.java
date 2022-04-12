@@ -20,7 +20,7 @@ public class QueryAnnotationTest {
 
     @Autowired
     private BoardRepository boardRepo;
-
+    /*
     @Test
     public void 쿼리어노테이션테스트1() {
         List<Board> boardList = boardRepo.queryAnnotationTest1("Title 10");
@@ -60,5 +60,8 @@ public class QueryAnnotationTest {
         for (Board board : boardList) {
             System.out.println("---> " + board.toString());
         }
-    }
+
+}
+
+     */
 }

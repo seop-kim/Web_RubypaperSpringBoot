@@ -27,7 +27,7 @@ public class BoardRepositoryTest {
     public void 게시글작성() {
         Board board = new Board();
         board.setTitle("First Title");
-        board.setWriter("Tester");
+        //board.setWriter("Tester");
         board.setContent("Content is Good?");
         board.setCreateDate(new Date());
         board.setCnt(0L);
@@ -40,7 +40,7 @@ public class BoardRepositoryTest {
         for (int i = 0; i <= 200; i++) {
             Board board = new Board();
             board.setTitle("Title " + i);
-            board.setWriter("Tester " + i);
+            //board.setWriter("Tester " + i);
             board.setContent("Content is Good? " + i);
             board.setCreateDate(new Date());
             board.setCnt(0L);
