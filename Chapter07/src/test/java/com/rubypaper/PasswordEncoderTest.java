@@ -15,20 +15,20 @@ import org.springframework.test.context.junit4.SpringRunner;
 @SpringBootTest
 @Commit
 public class PasswordEncoderTest {
-    @Autowired
-    private MemberRepository memberRepo;
+	@Autowired
+	private MemberRepository memberRepo;
 
-    @Autowired
-    private PasswordEncoder encoder;
+	@Autowired
+	private PasswordEncoder encoder;
 
-    @Test
-    public void testInsert() {
-        Member member = new Member();
-        member.setId("manager2");
-        member.setPassword(encoder.encode("manager456"));
-        member.setName("매니저2");
-        member.setRole(Role.ROLE_MANAGER);
-        member.setEnabled(true);
-        memberRepo.save(member);
-    }
+	@Test
+	public void testInsert() {
+		Member member = new Member();
+		member.setId("manager2");
+		member.setPassword(encoder.encode("manager456"));
+		member.setName("매니저2");
+		member.setRole(Role.ROLE_MANAGER);
+		member.setEnabled(true);
+		memberRepo.save(member);
+	}
 }
