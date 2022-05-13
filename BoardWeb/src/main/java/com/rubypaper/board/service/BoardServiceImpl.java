@@ -45,6 +45,10 @@ public class BoardServiceImpl implements BoardService {
     public Page<Board> getBoardList(Search search) {
         BooleanBuilder builder = new BooleanBuilder();
         QBoard qBoard = QBoard.board;
+        /**
+         * QBoard 를 읽어오지 못하는 문제가 발생할 경우
+         * Project Structure -> modules -> BoardWeb 프로젝트 -> main 밑에 있는 querydsl 폴더 우클릭 Sources 클릭하여 적용 후 Apply
+         */
 
         if (search.getSearchCondition().equals("TITLE")) {
             builder.and(qBoard.title.like("%" + search.getSearchKeyword() + "%"));
