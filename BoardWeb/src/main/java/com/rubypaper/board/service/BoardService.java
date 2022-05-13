@@ -1,6 +1,7 @@
 package com.rubypaper.board.service;
 
 import com.rubypaper.board.domain.Board;
+import com.rubypaper.board.domain.Search;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
@@ -14,5 +15,5 @@ public interface BoardService {
 
     Board getBoard(Board board);
 
-    Page<Board> getBoardList();
+    Page<Board> getBoardList(Search search);
 }

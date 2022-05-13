@@ -89,4 +89,17 @@ public class BoardRepositoryTest {
         findBoard.setContent("수정한 게시글");
         boardRepo.save(findBoard);
     }
+
+    @Test
+    public void 게시글작성() {
+        Board board = new Board();
+
+        board.setTitle("태섭 테스트");
+        board.setMember(memberRepo.findById("member").get());
+        board.setContent("태섭 테스트 내용");
+
+        boardRepo.save(board);
+    }
+
 }
+
