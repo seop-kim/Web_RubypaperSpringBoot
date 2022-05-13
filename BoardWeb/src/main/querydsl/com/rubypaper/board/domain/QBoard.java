@@ -1,15 +1,14 @@
-package querydsl.com.rubypaper.board.domain;
+package com.rubypaper.board.domain;
 
 import static com.querydsl.core.types.PathMetadataFactory.*;
 
+import com.querydsl.core.annotations.Generated;
 import com.querydsl.core.types.dsl.*;
 
 import com.querydsl.core.types.PathMetadata;
-import javax.annotation.processing.Generated;
+
 import com.querydsl.core.types.Path;
 import com.querydsl.core.types.dsl.PathInits;
-import com.rubypaper.board.domain.Board;
-import querydsl.com.rubypaper.board.domain.QMember;
 
 
 /**

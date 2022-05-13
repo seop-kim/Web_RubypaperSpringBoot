@@ -1,18 +1,14 @@
-package querydsl.com.rubypaper.board.domain;
+package com.rubypaper.board.domain;
 
 import static com.querydsl.core.types.PathMetadataFactory.*;
 
+import com.querydsl.core.annotations.Generated;
 import com.querydsl.core.types.dsl.*;
 
 import com.querydsl.core.types.PathMetadata;
 
-import javax.annotation.processing.Generated;
-
 import com.querydsl.core.types.Path;
 import com.querydsl.core.types.dsl.PathInits;
-import com.rubypaper.board.domain.Board;
-import com.rubypaper.board.domain.Member;
-import com.rubypaper.board.domain.Role;
 
 
 /**
@@ -25,7 +21,7 @@ public class QMember extends EntityPathBase<Member> {
 
     public static final QMember member = new QMember("member1");
 
-    public final ListPath<Board,QBoard> boardList = this.<Board,QBoard>createList("boardList",Board.class, QBoard.class, PathInits.DIRECT2);
+    public final ListPath<Board, QBoard> boardList = this.<Board, QBoard>createList("boardList", Board.class, QBoard.class, PathInits.DIRECT2);
 
     public final BooleanPath enabled = createBoolean("enabled");
 
